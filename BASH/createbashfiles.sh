@@ -14,20 +14,33 @@ FILEENTRIES=("Lassie" "George" "Maggie")
 echo "Creating 3 Files"
 for FN in ${FILENAMES[*]} 
 do
-	echo "we are adding" $FN
-	touch $FN
-	#Append the text entries into the files
-	# one issue - this will continue appending FileEntries into the files each time.
-	for FE in ${FILEENTRIES[*]} 
-	do
-		echo $FE >> $FN
-	done
-	echo "Viewing contents of" $FN ":"
-	cat $FN
+# this section that is commented is the attempt to check to see if files existed first.
+# currently throwing an error. 
+#	if [[-f "./$FN"]];
+#	then
+#		echo $FN "exists and does not need to be added."
+#	else
+		echo "Adding the file:" $FN
+		touch $FN
+		#Append the text entries into the files
+		for FE in ${FILEENTRIES[*]} 
+		do
+			echo $FE >> $FN
+		done
+#		echo "Viewing contents of" $FN ":"
+#		cat $FN
+#	fi
 done
 	
 #check to see what was done.
 LS -lisa
+
+# pulling out the content viewing piece, if that was desired:
+for FN in ${FILENAMES[*]} 
+do
+	echo "Contents of File" $FN "are:"
+	cat $FN
+done
 
 #object cleanup during testing
 #for FN in ${FILENAMES[*]}

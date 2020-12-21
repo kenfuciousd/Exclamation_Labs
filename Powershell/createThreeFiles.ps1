@@ -8,14 +8,18 @@ $filecontent = 'Lassie', 'George', 'Maggie'
 
 #for each file, and each line of content, create file and add content 
 foreach ($file in $filenames) { 
-	New-Item "./$file" -ItemType File 
-	foreach ($content in $filecontent) { 
-		Add-Content "./$file" $content	
-	}  
+	#if the file doesn't exist, create it and add contents
+	if (!([System.IO.File]::Exists($file))){
+		New-Item "./$file" -ItemType File 
+		foreach ($content in $filecontent) { 
+			Add-Content "./$file" $content	
+		}  
+	}
+	else { Write-Output "$file found, no additional creation necessary"}
 }  
 
 #now, read the files, print their contents
 foreach ($file in $filenames){
-	REM "Retrieving the content of" $file
+	Write-Output "Retrieving the content of $file"
 	Get-Content $file
 }
