@@ -1,3 +1,8 @@
+# createbashfiles.sh is a quick script to fulfill a technical requirements test
+# Author Jason Dyer
+#  dec 21 2020
+#  for Exclamation Labs technical requirements test. 
+
 #!/usr/local/bin/bash
 
 declare -a FILENAMES
