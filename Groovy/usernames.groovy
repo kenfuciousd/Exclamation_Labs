@@ -12,6 +12,16 @@ def identities = [
 // A 
 // in the following format <first_initial_of_first_name><lastname><numeric_sequence> 
 def formatA(List list) { 
+// beginning edits here
+// loop through the list, get ahold of each entry, manipulate as needed.
+// side note, is this formatting to keep whitespace down? need to research.
+for(i in 0 .. list.size()-1) { 
+	def entry = list[i].split{','}
+	print "Split gave us: " + entry + "\n"
+	for(j in 0 .. entry.size()-1){
+		print "inside the for loop, at " + entry[j] + "\n"
+	}
+}	
 def usernames = list 
 return usernames 
 } 
