@@ -7,6 +7,7 @@ def identities = [
 ["Slim", "", "Shady", "Marshal"], 
 ["Eleanor", "", "Rigby", ""] 
 ] 
+sequence = 0;
 // adding a new line to start on a clean foot, for troubleshooting
 print "\n" 
 // Complete the functions by returning an array of usernames. Use sequences 
@@ -35,7 +36,7 @@ list.eachWithIndex{row, i ->
 		}
 	}
 	// and close with the iteration, for the row
-	inString += i
+	inString += sequence++
 //	print "Now reconstructed, it looks like $inString - \n"
 	outList.add(inString)
 }
@@ -44,7 +45,7 @@ list.eachWithIndex{row, i ->
 def usernames = outList
 return usernames 
 } 
-print "Format A, usernames: "+ formatA(identities) + "\n" 
+print "Format A: "+ formatA(identities) + "\n" 
 
 // B 
 // in the following format 
@@ -73,12 +74,13 @@ list.eachWithIndex{row, i ->
 			nickName = column
 		}
 	}
-		// then construct the string
+	// then construct the string
+	//<first_name><nickname_if_present><lastname><numeric_sequence> 
 	if(nickName != null){
-		inString = firstName + nickName + lastName + i
+		inString = firstName + nickName + lastName + sequence++
 	}
 	else{
-		inString = firstName + lastName + i
+		inString = firstName + lastName + sequence++
 	}
 	// and close with the iteration, for the row
 //	print "Now reconstructed, it looks like $inString - \n"
@@ -108,12 +110,13 @@ list.eachWithIndex{row, i ->
 		if(j == 2){ lastName = column }
 		if(j == 3 && (column != null && column != "")){nickName = column.substring(0,1)}
 	} //end columns .each
-		// then construct the string
+	// then construct the string
+	//<first_initial_of_nickname_if_present_otherwise_use_fi_of_firstname><lastname><numeric_sequence> 
 	if(nickName != null){
-		inString = nickName + lastName + i
+		inString = nickName + lastName + sequence++
 	}
 	else{
-		inString = firstName + lastName + i
+		inString = firstName + lastName + sequence++
 	}
 	// and close with the iteration, for the row
 //	print "Now reconstructed, it looks like $inString - \n"
@@ -145,10 +148,12 @@ list.eachWithIndex{row, i ->
 		if(j == 3 && (column != null && column != "")){nickName = column}
 	}
 	// then construct the string
-	inString = lastName + ", " + firstName + ", "
-	if(middleName != null){ inString += middleName + ", "}
-	if(nickName != null){inString += nickName + ", "}
-	inString += i
+	//<Lastname><comma><Firstname><comma_if_middlename><Middlename><comma_if_nickname><Nickname><numeric_sequence> 
+	inString = "$lastName,$firstName"
+	if(middleName != null){ inString += ",$middleName"}
+	if(nickName != null){inString += ",$nickName"}
+	inString += ","+sequence.toString()
+	sequence++ // iterate, since we need strings in-line this time
 	outList.add(inString)
 }
 def usernames = outList 
