@@ -1,0 +1,4 @@
+Format A: [JSchmidt0, BJean1, ERIGBY2, SShady3, ERigby4]
+Format B: [JohnJingleheimerSchmidt5, BillieJean6, ELEANORRIGBY7, SlimMarshalShady8, EleanorRigby9]
+Format C: [JSchmidt10, BJean11, ERIGBY12, MShady13, ERigby14]
+Format D: [Schmidt,John,Jacob,Jingleheimer,15, Jean,Billie,16, RIGBY,ELEANOR,17, Shady,Slim,Marshal,18, Rigby,Eleanor,19]
