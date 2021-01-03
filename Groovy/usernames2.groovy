@@ -20,7 +20,7 @@ String makeUserName(ArrayList user, String format){
 	if(user[1]) {middleName = user[1]}
 	def lastName = user[2]
 	def nickName
-	if(user[ 3]){nickName = user[3]}
+	if(user[3]){nickName = user[3]}
 	//now to format it:
 //	print "parsed: -- $firstName + $middleName + $lastName + $nickName + $format + $sequence-- "
 	switch(format){
@@ -36,7 +36,7 @@ String makeUserName(ArrayList user, String format){
 //			print "Case B"
 			if(nickName != null){ output = firstName + nickName + lastName + sequence}
 			else{output = firstName + lastName + sequence}
-			sequence++
+			//sequence++
 			return output;
 	    	break;
 	    case ~/(?i)C/:
@@ -61,14 +61,6 @@ String makeUserName(ArrayList user, String format){
 	}// end switch format
 //	return output;   // could probably just do this in the format case switch
 }
-// testing the function.
-//testList = new ArrayList<String>(["FN", "MN", "LN", "NN"])
-//String format = "C"
-//print "$testList and $format\n"
-//username = makeUserName(testList, format)
-//def username = makeUserName(testList[0], testList[1], testList[2], testList[3], format)
-//print "\n --- $username --- \n"
-
 
 //// A ////
 // in the following format <first_initial_of_first_name><lastname><numeric_sequence> 
@@ -76,6 +68,7 @@ def formatA(List list) {
 	def usernames = []
 	list.eachWithIndex{row, i ->
 		def username = makeUserName(row, "A") // the new function
+
 		usernames.add(username)
 	}
 	return usernames 
